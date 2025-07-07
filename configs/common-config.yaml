@@ -1,0 +1,26 @@
+sparkConfig:
+  appName: KafkaLogApp
+  master: spark://spark-master:7077
+  sparkLogLevel: WARN
+  properties:
+    spark.hadoop.fs.s3a.endpoint: http://minio:9000
+    spark.hadoop.fs.s3a.access.key: minioadmin
+    spark.hadoop.fs.s3a.secret.key: minioadmin
+    spark.hadoop.fs.s3a.path.style.access: true
+    # Add these S3 timeout configurations
+    spark.hadoop.fs.s3a.connection.timeout: 60000
+    spark.hadoop.fs.s3a.establish.timeout: 60000
+    spark.hadoop.fs.s3a.socket.timeout: 60000
+    spark.hadoop.fs.s3a.retry.limit: 3
+    spark.hadoop.fs.s3a.retry.delay: 1000
+    spark.hadoop.fs.s3a.threads.keepalivetime: 60000
+
+kafkaConfigs:
+  kafkaProducerProperties:
+    bootstrap.servers: kafka1.prod.dataplatform.link:9092,kafka2.prod.dataplatform.link:9092
+    sasl.jaas.config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="user" password="xyz";'
+    sasl.mechanism: PLAIN
+    security.protocol: SASL_PLAINTEXT
+    enable.idempotence: false
+    acks: 1
+  kafkaProducerTimeOut: 30
