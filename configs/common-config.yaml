@@ -17,7 +17,7 @@ sparkConfig:
 
 kafkaConfigs:
   kafkaProducerProperties:
-    bootstrap.servers: kafka1.prod.dataplatform.link:9092,kafka2.prod.dataplatform.link:9092
+    bootstrap.servers: 
     sasl.jaas.config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="user" password="xyz";'
     sasl.mechanism: PLAIN
     security.protocol: SASL_PLAINTEXT
